@@ -14,14 +14,13 @@ import { cn } from '@/lib/utils';
 export function Header() {
     return (
         <div className={cn("flex justify-between w-auto p-10")}>
-            <NavigationMenu className={cn("mr-auto")}>
+            <Link href="/"  passHref>
+                <h2 className={cn("scroll-m-20 text-2xl font-semibold tracking-tight antialiased", oswald.className)}>Eric Lin's Homepage</h2>
+            </Link>
+            <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem>
-                        <Link href="/" legacyBehavior passHref>
-                            <NavigationMenuLink>
-                                <h2 className={cn("scroll-m-20 text-2xl font-semibold tracking-tight antialiased", oswald.className)}>Eric Lin's Homepage</h2>
-                            </NavigationMenuLink>
-                        </Link>
+
                     </NavigationMenuItem>
                     {/* TODO combine posts and blog with NavigationContent */}
                     <NavigationMenuItem>
