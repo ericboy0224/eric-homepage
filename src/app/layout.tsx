@@ -29,9 +29,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className={cn('w-full max-w-screen-md mx-auto')}>
+          <div className={cn('w-full max-w-screen-lg mx-auto')}>
             <Header />
-            {children}
+            <main>{children}</main>
           </div>
         </ThemeProvider>
       </body>
