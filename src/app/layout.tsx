@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
 import './globals.css';
 
-import { Inter as FontSans } from 'next/font/google';
-
+import { ThemeProvider } from '@/components/theme-provider';
+import { fontSans } from '@/components/ui/fonts';
 import { cn } from '@/lib/utils';
 
+import { Header } from './header';
+
 export const metadata: Metadata = {
-  title: "Eric Homepage",
+  title: "Eric Lin's Homepage",
   description: "A full-stack developer based in Taipei.",
 };
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
 
 export default function RootLayout({
   children,
@@ -23,9 +20,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(
-        "min-h-screen bg-background font-sans antialiased",
+        "min-h-screen bg-background font-sans antialiased flex justify-center",
         fontSans.variable
-      )}>{children}</body>
-    </html>
+      )}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className={cn('w-full max-w-screen-md mx-auto')}>
+            <Header />
+            {children}
+          </div>
+        </ThemeProvider>
+      </body>
+    </html >
   );
 }
