@@ -11,7 +11,7 @@ const Heading = ({ children, pulse }: { children: ReactNode, pulse?: number }) =
 
     return useShowItem(
         <motion.h1
-            className={cn("scroll-m-20 text-6xl font-semibold tracking-tight antialiased mb-3", poppins.className)}
+            className={cn("scroll-m-20 md:text-6xl text-5xl font-semibold tracking-tight antialiased mb-3", poppins.className)}
         >
             {children}
         </motion.h1>, pulse
