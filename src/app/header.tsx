@@ -4,7 +4,7 @@ import Link from 'next/link';
 import * as React from 'react';
 
 import { ModeToggle } from '@/components/mode-toggle';
-import { oswald } from '@/components/ui/fonts';
+import { foldit } from '@/components/ui/fonts';
 import {
     NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink,
     NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle
@@ -14,8 +14,8 @@ import { cn } from '@/lib/utils';
 export function Header() {
     return (
         <div className={cn("flex justify-between w-auto p-10")}>
-            <Link href="/"  passHref>
-                <h2 className={cn("scroll-m-20 text-2xl font-semibold tracking-tight antialiased", oswald.className)}>Eric Lin's Homepage</h2>
+            <Link href="/" passHref>
+                <h1 className={cn("scroll-m-20 text-3xl font-semibold tracking-tight antialiased", foldit.className)}>E</h1>
             </Link>
             <NavigationMenu>
                 <NavigationMenuList>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import './globals.css';
 
 import { ThemeProvider } from '@/components/theme-provider';
-import { fontSans } from '@/components/ui/fonts';
+import { merriweather } from '@/components/ui/fonts';
 import { cn } from '@/lib/utils';
 
 import { Header } from './header';
@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(
         "min-h-screen bg-background font-sans antialiased flex justify-center",
-        fontSans.variable
+        merriweather.className
       )}>
         <ThemeProvider
           attribute="class"

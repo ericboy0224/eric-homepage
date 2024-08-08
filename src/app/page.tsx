@@ -1,10 +1,27 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
+import Banner from '@/components/ui/text-banner';
 
 export default function Home() {
   return (
-    <div>
-      <Button>Click me</Button>
-   </div>
+    // TODO: add resizable
+
+    // <div>
+    //   <IntroPic />
+    // </div>
+    <ResizablePanelGroup
+      direction="horizontal"
+      className="w-full h-full rounded-lg border overflow-scroll"
+    >
+      <ResizablePanel defaultSize={100}>
+        <div className='h-[500px]'>
+          <Banner headers={['Fullstack Developer', 'Based in Taipei', '3 Years of Experience',]} />
+        </div>
+
+      </ResizablePanel>
+      {/* <ResizableHandle /> */}
+      {/* <ResizablePanel defaultSize={50}>
+
+      </ResizablePanel> */}
+    </ResizablePanelGroup>
   );
 }
