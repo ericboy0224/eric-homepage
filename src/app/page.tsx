@@ -14,7 +14,10 @@ export default function Home() {
     >
       <ResizablePanel defaultSize={100}>
         <div className='h-[500px]'>
-          <Banner headers={['Fullstack Developer', 'Based in Taipei', '3 Years of Experience',]} />
+          <Banner
+            headers={['Fullstack Developer', 'Based in Taipei', '3 Years of Experience']}
+            marqueeTexts={['Go', 'TypeScript', 'React.js', 'Next.js', 'Tailwind', 'SCSS', 'D3.js']}
+          />
         </div>
 
       </ResizablePanel>
