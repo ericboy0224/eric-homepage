@@ -1,11 +1,11 @@
 'use client'
-import { cn } from '@/lib/utils';
-import { motion, useAnimation, useInView } from 'framer-motion';
-import { useEffect, useRef } from 'react';
-import { poppins } from '../fonts';
 
+import { cn } from "@/lib/utils";
+import { useAnimation, useInView, motion } from "framer-motion";
+import { ReactNode, useRef, useEffect } from "react";
+import { poppins } from "../fonts";
 
-const BannerHeading = ({ text, pulse }: { text: string, pulse?: number }) => {
+export const useShowItem = (children: ReactNode, pulse?: number) => {
     const controls = useAnimation();
     const ref = useRef(null)
     const isInView = useInView(ref)
@@ -21,16 +21,13 @@ const BannerHeading = ({ text, pulse }: { text: string, pulse?: number }) => {
     }, [controls, isInView]);
 
     return (
-        <motion.h1
+        <motion.div
             ref={ref}
             initial={{ opacity: 0 }}
             animate={controls}
             transition={{ duration: 2 }}
-            className={cn("scroll-m-20 text-6xl font-semibold tracking-tight antialiased mb-3", poppins.className)}
         >
-            {text}
-        </motion.h1>
+            {children}
+        </motion.div>
     );
-};
-
-export default BannerHeading;
+}

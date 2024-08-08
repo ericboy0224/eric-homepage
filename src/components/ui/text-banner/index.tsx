@@ -1,17 +1,36 @@
+import { ResizablePanelGroup, ResizablePanel } from "../resizable";
 import BannerBackground from "./banner-background";
-import BannerHeading from "./banner-heading";
+import Heading from "../inview/text/heading";
+import Description from "../inview/text/description";
 
-export default function Banner({ headers, marqueeTexts }: { headers: string[]; marqueeTexts: string[] }) {
+
+export default function Banner() {
 
     return (
         <BannerBackground>
-            <div className="flex flex-col">
-                {
-                    headers.map((header, i) => (
-                        <BannerHeading text={header} pulse={i} key={i} />
-                    ))
-                }
-            </div>
+            <ResizablePanelGroup className="text-end" direction="vertical">
+                <ResizablePanel className="text-start" defaultSize={60}>
+                    <Heading pulse={0}>
+                        Hi, I'm Eric
+                    </Heading>
+                    <Heading pulse={1}>
+                        A FullStack Developer Based in Taipei
+                    </Heading>
+                </ResizablePanel>
+                <ResizablePanel defaultSize={15} >
+                    <ResizablePanelGroup direction="horizontal">
+                        <ResizablePanel>
+                            <Description pulse={2}> + </Description>
+                        </ResizablePanel>
+                        <Heading pulse={2}>
+                            3
+                        </Heading>
+                    </ResizablePanelGroup>
+                </ResizablePanel>
+                <ResizablePanel>
+                    <Description pulse={2}> Years of Experience</Description>
+                </ResizablePanel>
+            </ResizablePanelGroup>
         </BannerBackground>
     )
 }
