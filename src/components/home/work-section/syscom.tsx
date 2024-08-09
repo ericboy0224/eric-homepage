@@ -2,13 +2,11 @@ import { WorkItem } from "./work-item";
 
 export default function SyscomSection() {
     return (
-        <div>
-            <WorkItem
+        <WorkItem
                 company="Syscom"
                 companyUrl="https://www.fundingcircle.com/"
                 logoSrc="/images/syscom.png"
             >
-                I worked as a Frontend Engineer at Syscom.
                 <ul className="mb-4 space-y-3">
                     <li className="pl-4 border-l-4 border-primary md:text-md text-sm">Rebuilt 4-year-old web application in Angular and Rx.js with full user experience.</li>
                     <li className="pl-4 border-l-4 border-primary md:text-md text-sm">Built a logic for a report previewer with virtual scroll and improved the loading speed by 90%.</li>
@@ -16,6 +14,5 @@ export default function SyscomSection() {
                     <li className="pl-4 border-l-4 border-primary md:text-md text-sm">Built data visualization components with d3.js.</li>
                 </ul>
             </WorkItem>
-        </div>
     );
 }

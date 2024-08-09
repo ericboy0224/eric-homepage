@@ -1,4 +1,7 @@
+import { Button } from '@/components/ui/button';
+import { poppins } from '@/components/ui/fonts';
 import { ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -12,14 +15,15 @@ interface WorkExperience {
 
 export function WorkItem({ company, children, companyUrl, logoSrc }: React.PropsWithChildren<WorkExperience>) {
     return (
-        <ResizablePanelGroup direction="vertical" className="max-h-[550px]">
+        <ResizablePanelGroup direction="vertical" className={cn("max-h-[500px]", poppins.className)}>
+            <ResizablePanel className='flex justify-center items-center'>
+                <Image src={logoSrc} alt={company} width={100} height={100} loading="lazy" />
+            </ResizablePanel>
             <ResizablePanel>
                 {children}
             </ResizablePanel>
-            <ResizablePanel className="flex justify-center items-center">
-                <Link href={companyUrl} target="_blank">
-                    <Image src={logoSrc} alt={company} width={200} height={100} loading="lazy" />
-                </Link>
+            <ResizablePanel className='flex justify-center items-center'>
+                <Button size="sm"><Link href={`/work/${company}`} target="_blank">More</Link></Button>
             </ResizablePanel>
         </ResizablePanelGroup>
     );

@@ -1,6 +1,4 @@
-import { poppins } from "@/components/ui/fonts";
 import Description from "@/components/ui/inview/text/description";
-import { cn } from "@/lib/utils";
 
 import ExperienceItem from "./experience-item";
 
@@ -16,7 +14,7 @@ export default function ExperienceSection() {
             <ExperienceItem
                 company="Syscom"
                 position="Front-end Engineer"
-                technologies="Angular・D3.js・TypeScript・SCSS・Java"
+                technologies="Angular・Rx.js・D3.js・TypeScript・SCSS・Java"
                 period="2021 - 2022"
             />
             <ExperienceItem
