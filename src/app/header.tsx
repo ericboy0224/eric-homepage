@@ -24,9 +24,9 @@ export function Header() {
                     </NavigationMenuItem>
                     {/* TODO combine posts and blog with NavigationContent */}
                     <NavigationMenuItem>
-                        <Link href="/blog" legacyBehavior passHref>
+                        <Link href="/work" legacyBehavior passHref>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                Blog
+                                Work
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>

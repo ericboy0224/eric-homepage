@@ -18,14 +18,13 @@ export default function Divider() {
 
     useEffect(() => {
         if (isInView) {
-            console.log('in view');
             control.start('animate');
         } else {
             control.stop();
         }
     }, [isInView, control]);
     return (
-        <div className="flex justify-center items-center mb-10">
+        <div className="flex justify-center items-center mb-20">
             <motion.div
                 ref={ref}
                 className="w-[50px] h-[50px] bg-custom-gradient"
