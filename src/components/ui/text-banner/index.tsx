@@ -14,7 +14,7 @@ export default function Banner() {
                         Hi, I'm Eric
                     </Heading>
                     <Heading pulse={1}>
-                        A FullStack Developer Based in Taipei
+                        A Full-stack Developer Based in Taipei
                     </Heading>
                 </ResizablePanel>
                 <ResizablePanel defaultSize={15} >
@@ -28,7 +28,8 @@ export default function Banner() {
                     </ResizablePanelGroup>
                 </ResizablePanel>
                 <ResizablePanel>
-                    <Description pulse={2}> Years of Experience</Description>
+                    <Description pulse={3}>Years of Experience</Description>
+                    <Description pulse={3}>Professional Developer</Description>
                 </ResizablePanel>
             </ResizablePanelGroup>
         </BannerBackground>
