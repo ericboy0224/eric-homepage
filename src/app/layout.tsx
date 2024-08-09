@@ -31,7 +31,7 @@ export default function RootLayout({
         >
           <div className={cn('w-full max-w-screen-lg mx-auto')}>
             <Header />
-            <main>{children}</main>
+            <main className="h-full">{children}</main>
           </div>
         </ThemeProvider>
       </body>
