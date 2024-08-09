@@ -1,7 +1,7 @@
 "use client"
 import { ModeToggle } from '@/components/mode-toggle';
 import { foldit } from '@/components/ui/fonts';
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import * as React from 'react';

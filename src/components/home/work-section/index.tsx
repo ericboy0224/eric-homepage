@@ -1,4 +1,4 @@
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
+import { ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 
 import SaviahSection from "./saviah";
 import SyscomSection from "./syscom";

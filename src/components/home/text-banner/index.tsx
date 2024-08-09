@@ -26,7 +26,7 @@ export default function Banner() {
                         </Heading>
                     </ResizablePanelGroup>
                 </ResizablePanel>
-                <ResizablePanel>
+                <ResizablePanel defaultSize={45}>
                     <Description pulse={3}>Years of Experience</Description>
                     <Description pulse={3}>Professional Developer</Description>
                 </ResizablePanel>

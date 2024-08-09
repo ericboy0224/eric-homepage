@@ -13,7 +13,7 @@ const gradientVariants = {
     },
 };
 
-const BannerBackground = ({ children }: { children: ReactNode }) => {
+const BannerBackground = ({ children }: { children?: ReactNode }) => {
     const controls = useAnimation();
     const ref = useRef(null)
     const isInView = useInView(ref)

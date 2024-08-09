@@ -10,8 +10,6 @@ interface WorkExperience {
     logoSrc: string;
 }
 
-
-
 export function WorkItem({ company, children, logoSrc }: React.PropsWithChildren<WorkExperience>) {
     return (
         <ResizablePanelGroup direction="vertical" className={cn("max-h-[700px]", poppins.className)}>
@@ -22,7 +20,9 @@ export function WorkItem({ company, children, logoSrc }: React.PropsWithChildren
                 {children}
             </ResizablePanel>
             <ResizablePanel className='flex justify-center items-center'>
-                <Button size="sm"><Link href={`/works/${company.toLowerCase()}`} target="_blank">More</Link></Button>
+                <Button size="sm">
+                    <Link href={`/works/${company.toLowerCase()}`} target="_blank">More</Link>
+                </Button>
             </ResizablePanel>
         </ResizablePanelGroup>
     );
