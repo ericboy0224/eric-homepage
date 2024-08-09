@@ -9,7 +9,7 @@ import { ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 export default function Home() {
   return (
     <div className='text-center'>
-      <section className="mb-20 h-[calc(100vh-9.5rem)]">
+      <section className="mb-20 md:h-[calc(100vh-9.5rem)] h-[calc(100vh-5rem)]">
         <ResizablePanelGroup className='max-h-[800px]' direction="vertical">
           <ResizablePanel defaultSize={20}>
             <Heading>JIA-HAO, LIN</Heading>

@@ -8,7 +8,7 @@ export default function Banner() {
     return (
         <BannerBackground>
             <ResizablePanelGroup className="text-end" direction="vertical">
-                <ResizablePanel className="text-start" defaultSize={60}>
+                <ResizablePanel className="text-start" defaultSize={70}>
                     <Heading pulse={0}>
                         Hi, I'm Eric
                     </Heading>
@@ -26,7 +26,7 @@ export default function Banner() {
                         </Heading>
                     </ResizablePanelGroup>
                 </ResizablePanel>
-                <ResizablePanel defaultSize={45}>
+                <ResizablePanel defaultSize={15}>
                     <Description pulse={3}>Years of Experience</Description>
                     <Description pulse={3}>Professional Developer</Description>
                 </ResizablePanel>
