@@ -1,8 +1,7 @@
-import { ResizablePanelGroup, ResizablePanel } from "../resizable";
+import Description from "../../ui/inview/text/description";
+import Heading from "../../ui/inview/text/heading";
+import { ResizablePanel, ResizablePanelGroup } from "../../ui/resizable";
 import BannerBackground from "./banner-background";
-import Heading from "../inview/text/heading";
-import Description from "../inview/text/description";
-
 
 export default function Banner() {
 

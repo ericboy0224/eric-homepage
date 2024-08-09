@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils';
 
 export function Header() {
     return (
-        <div className={cn("flex justify-between w-auto p-10")}>
+        <div className={cn("flex justify-between w-auto p-10 h-[7rem]")}>
             <Link href="/" passHref>
                 <h1 className={cn("scroll-m-20 text-3xl font-semibold tracking-tight antialiased", foldit.className)}>E</h1>
             </Link>

@@ -11,7 +11,7 @@ const Description = ({ children, pulse }: { children: ReactNode, pulse?: number 
 
     return useShowItem(
         <motion.span
-            className={cn("scroll-m-20 text-xl font-semibold tracking-tight antialiased mb-3", poppins.className)}
+            className={cn("scroll-m-20 md:text-xl text-lg font-semibold tracking-tight antialiased mb-3", poppins.className)}
         >
             {children}
         </motion.span>, pulse
