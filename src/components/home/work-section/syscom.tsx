@@ -4,7 +4,6 @@ export default function SyscomSection() {
     return (
         <WorkItem
                 company="Syscom"
-                companyUrl="https://www.fundingcircle.com/"
                 logoSrc="/images/syscom.png"
             >
                 <ul className="mb-4 space-y-3">

@@ -1,15 +1,13 @@
-"use client"
-
+import { ModeToggle } from '@/components/mode-toggle';
+import { foldit } from '@/components/ui/fonts';
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import * as React from 'react';
 
-import { ModeToggle } from '@/components/mode-toggle';
-import { foldit } from '@/components/ui/fonts';
-import {
-    NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink,
-    NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle
-} from '@/components/ui/navigation-menu';
-import { cn } from '@/lib/utils';
+"use client"
+
+
 
 export function Header() {
     return (
@@ -20,13 +18,9 @@ export function Header() {
             <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem>
-
-                    </NavigationMenuItem>
-                    {/* TODO combine posts and blog with NavigationContent */}
-                    <NavigationMenuItem>
-                        <Link href="/work" legacyBehavior passHref>
+                        <Link href="/works" legacyBehavior passHref>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                Work
+                                Works
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
@@ -37,14 +31,6 @@ export function Header() {
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
-                    {/* TODO add subscriber system */}
-                    {/* <NavigationMenuItem>
-                        <Link href="/subscribe" legacyBehavior passHref>
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                Subscribe
-                            </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem> */}
                 </NavigationMenuList>
             </NavigationMenu>
             <ModeToggle />

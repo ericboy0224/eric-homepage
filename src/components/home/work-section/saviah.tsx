@@ -4,7 +4,6 @@ export default function SaviahSection() {
     return (
         <WorkItem
             company="Saviah"
-            companyUrl="https://www.saviah.com/"
             logoSrc="/images/saviah.png"
         >
             <ul className="mb-4 space-y-3">

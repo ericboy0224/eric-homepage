@@ -34,7 +34,7 @@ export default function Home() {
       <section className="mb-20 h-[calc(100vh-9.5rem)]">
         <ResizablePanelGroup direction="vertical">
           <ResizablePanel defaultSize={10}>
-            <Heading>Work</Heading>
+            <Heading>Works</Heading>
           </ResizablePanel>
           <ResizablePanel defaultSize={90}>
             <WorkSection />
@@ -42,7 +42,7 @@ export default function Home() {
         </ResizablePanelGroup>
       </section>
       <Divider />
-      <section className="md:h-[250vh] h-[300vh]">
+      <section className="md:h-[250vh] h-[450vh]">
         <ResizablePanelGroup direction="vertical">
           <ResizablePanel defaultSize={10}>
             <Heading>Try to make life easier</Heading>
