@@ -20,8 +20,8 @@ export default function ExperienceSection() {
                 period="2021 - 2022"
             />
             <ExperienceItem
-                company="National Taipei University of Technology"
-                position="Student"
+                company="NTUT"
+                position="Bachelor"
                 technologies="Computer Science・Electrical Engineering"
                 period="2017 - 2021"
             />

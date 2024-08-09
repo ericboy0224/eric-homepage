@@ -1,5 +1,6 @@
 import ExperienceSection from '@/components/home/experience-section';
 import Banner from '@/components/home/text-banner';
+import SaviahSection from '@/components/home/work-section/saviah';
 import Divider from '@/components/ui/divider';
 import Heading from '@/components/ui/inview/text/heading';
 import { ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
@@ -23,8 +24,19 @@ export default function Home() {
           <ResizablePanel defaultSize={10}>
             <Heading>Experience</Heading>
           </ResizablePanel>
-          <ResizablePanel defaultSize={80}>
+          <ResizablePanel defaultSize={90}>
             <ExperienceSection />
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      </section>
+      <Divider />
+      <section className="mb-20 h-[calc(100vh-9.5rem)]">
+        <ResizablePanelGroup direction="vertical">
+          <ResizablePanel defaultSize={10}>
+            <Heading>Work</Heading>
+          </ResizablePanel>
+          <ResizablePanel defaultSize={90}>
+            <SaviahSection />
           </ResizablePanel>
         </ResizablePanelGroup>
       </section>
