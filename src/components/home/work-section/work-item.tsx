@@ -15,7 +15,7 @@ interface WorkExperience {
 
 export function WorkItem({ company, children, companyUrl, logoSrc }: React.PropsWithChildren<WorkExperience>) {
     return (
-        <ResizablePanelGroup direction="vertical" className={cn("max-h-[500px]", poppins.className)}>
+        <ResizablePanelGroup direction="vertical" className={cn("max-h-[700px]", poppins.className)}>
             <ResizablePanel className='flex justify-center items-center'>
                 <Image src={logoSrc} alt={company} width={100} height={100} loading="lazy" />
             </ResizablePanel>
