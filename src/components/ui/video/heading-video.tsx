@@ -46,34 +46,32 @@ export default function HeadingVideo({ heading, content, videoSrc, isReversed = 
 
 
     return (
-        <Description>
-            <div ref={containerRef} className="flex flex-col md:flex-row w-full">
-                <motion.div
-                    className={`w-full md:w-1/2 p-4 flex flex-col justify-center items-center ${isReversed && !isNarrow ? 'order-2' : 'order-1'}`}
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
+        <div ref={containerRef} className="flex flex-col md:flex-row w-full">
+            <motion.div
+                className={`w-full md:w-1/2 p-4 flex flex-col justify-center items-center ${isReversed && !isNarrow ? 'order-2' : 'order-1'}`}
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <Heading>{heading}</Heading>
+                <p>{content}</p>
+            </motion.div>
+            <motion.div
+                className={`w-full md:w-1/2  border rounded-lg ${isReversed && !isNarrow ? 'order-1' : 'order-2'}`}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <video
+                    ref={videoRef}
+                    className="w-full h-auto"
+                    muted
+                    playsInline
                 >
-                    <Heading>{heading}</Heading>
-                    <p>{content}</p>
-                </motion.div>
-                <motion.div
-                    className={`w-full md:w-1/2  border rounded-lg ${isReversed && !isNarrow ? 'order-1' : 'order-2'}`}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <video
-                        ref={videoRef}
-                        className="w-full h-auto"
-                        muted
-                        playsInline
-                    >
-                        <source src={videoSrc} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                </motion.div>
-            </div>
-        </Description>
+                    <source src={videoSrc} type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </motion.div>
+        </div>
     );
 }

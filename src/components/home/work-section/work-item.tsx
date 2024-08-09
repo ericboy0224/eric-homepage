@@ -21,7 +21,7 @@ export function WorkItem({ company, children, logoSrc }: React.PropsWithChildren
             </ResizablePanel>
             <ResizablePanel className='flex justify-center items-center'>
                 <Button size="sm">
-                    <Link href={`/works/${company.toLowerCase()}`} target="_blank">More</Link>
+                    <Link href={`/works/${company.toLowerCase()}`} legacyBehavior passHref>More</Link>
                 </Button>
             </ResizablePanel>
         </ResizablePanelGroup>
