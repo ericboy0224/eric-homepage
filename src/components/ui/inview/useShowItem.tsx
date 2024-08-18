@@ -1,9 +1,7 @@
 'use client'
 
-import { cn } from "@/lib/utils";
 import { useAnimation, useInView, motion } from "framer-motion";
 import { ReactNode, useRef, useEffect } from "react";
-import { poppins } from "../fonts";
 
 export const useShowItem = (children: ReactNode, pulse?: number) => {
     const controls = useAnimation();
