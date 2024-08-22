@@ -14,7 +14,7 @@ export function WorkItem({ company, children, logoSrc }: React.PropsWithChildren
         <div className={cn("flex flex-col md:flex-row max-h-[700px] border rounded-lg overflow-hidden", poppins.className)}>
             <div className='flex flex-col justify-center items-center p-4 md:w-1/5 bg-gray-100 dark:bg-gray-800'>
                 <Image src={logoSrc} alt={company} width={100} height={100} loading="lazy" className='mb-4' />
-                <Button size="sm">
+                <Button variant="outline" size="sm">
                     <Link href={`/works/${company.toLowerCase()}`}>More</Link>
                 </Button>
             </div>

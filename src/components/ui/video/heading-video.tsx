@@ -62,7 +62,7 @@ export default function HeadingVideo({ heading, content, videoSrc, posterSrc, is
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                <div className="relative w-full h-full max-w-[960px] max-h-[540px]">
+                <div className="relative w-full h-full max-w-[240px] max-h-[135px] md:max-w-[960px] md:max-h-[540px]">
                     {isLoading && (
                         <Image
                             src={posterSrc}
