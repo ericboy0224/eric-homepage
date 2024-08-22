@@ -1,4 +1,4 @@
-import { Foldit, Poppins, Noto_Sans } from 'next/font/google';
+import { Foldit, Poppins } from 'next/font/google';
 
 // export const inter = Noto_Sans({
 //     subsets: ['latin'],
