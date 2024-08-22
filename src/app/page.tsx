@@ -4,7 +4,6 @@ import Banner from '@/components/ui/home/text-banner';
 import WorkSection from '@/components/ui/home/work-section';
 import Divider from '@/components/ui/divider';
 import Heading from '@/components/ui/inview/text/heading';
-import Link from 'next/link';
 import SocialMedia from '@/components/ui/social-media';
 
 export default function Home() {
@@ -14,6 +13,9 @@ export default function Home() {
         <div className='max-h-[800px] flex flex-col'>
           <div className="flex-none">
             <Heading>JIA-HAO, LIN</Heading>
+          </div>
+          <div className='flex justify-center'>
+            <SocialMedia />
           </div>
           <div className="flex-grow border rounded-lg">
             <Banner />
@@ -48,9 +50,6 @@ export default function Home() {
         <div className="space-y-20">
           <MoreSection />
         </div>
-      </section>
-      <section className='flex justify-center'>
-        <SocialMedia />
       </section>
     </div>
   );
