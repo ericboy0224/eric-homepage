@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Eric Lin's Personal Website
+
+This is a personal website and blog for Eric Lin, a full-stack developer based in Taipei. The project is built using Next.js and incorporates various modern web development technologies and practices.
+
+## Features
+
+- Responsive design
+- Dark mode support
+- Dynamic content rendering
+- Blog functionality with MDX support
+- Work experience showcase
+- Animated UI components
+
+## Technologies Used
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Shadcn/UI
+- Contentlayer
+- Framer Motion
+- MDX
 
 ## Getting Started
 
-First, run the development server:
+To run this project locally, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone the repository
+2. Install dependencies:
+   ```
+   pnpm install
+   ```
+3. Run the development server:
+   ```
+   pnpm dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `src/app`: Main application pages and layouts
+- `src/components`: Reusable React components
+- `src/lib`: Utility functions
+- `posts`: MDX blog posts
+- `public`: Static assets
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Key Components
 
-## Learn More
+- Header: Navigation and theme toggle
+- Banner: Animated introduction section
+- Work Section: Showcase of work experiences
+- Blog: Dynamic blog posts using MDX
 
-To learn more about Next.js, take a look at the following resources:
+## Styling
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project uses Tailwind CSS for styling, with custom configurations in `tailwind.config.ts`. Global styles are defined in `src/app/globals.css`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Content Management
 
-## Deploy on Vercel
+Blog posts are managed using Contentlayer, allowing for easy creation and management of MDX content.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The project is configured for easy deployment on Vercel.
+
+## License
+
+This project is open-source and available under the MIT License.
