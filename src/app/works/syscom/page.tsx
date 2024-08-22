@@ -1,8 +1,8 @@
 import React from 'react';
 
-import SyscomAchievement from '../../../components/achievements/syscom-achievement';
-import CompanyInfo from '../../../components/company-info';
-import WorkLayout from '../../../components/work-layout';
+import SyscomAchievement from '../../../components/ui/achievements/syscom-achievement';
+import CompanyInfo from '../../../components/ui/company-info';
+import WorkLayout from '../../../components/ui/work-layout';
 
 const SyscomContent: React.FC = () => {
  

@@ -1,4 +1,4 @@
-import SaviahAchievement from "@/components/achievements/saviah-achievement";
+import SaviahAchievement from "@/components/ui/achievements/saviah-achievement";
 
 import { WorkItem } from "./work-item";
 

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import './globals.css';
 
-import { ThemeProvider } from '@/components/theme-provider';
-import { merriweather } from '@/components/ui/fonts';
+import { ThemeProvider } from '@/components/ui/theme-provider';
+
 import { cn } from '@/lib/utils';
 
 import { Header } from './header';
+import { poppins } from "@/components/ui/fonts";
 
 export const metadata: Metadata = {
   title: "Eric Lin's Homepage",
@@ -21,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(
         "min-h-screen bg-background font-sans antialiased flex justify-center",
-        merriweather.className
+        poppins.className
       )}>
         <ThemeProvider
           attribute="class"

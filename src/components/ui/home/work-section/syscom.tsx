@@ -1,4 +1,4 @@
-import SyscomAchievement from "@/components/achievements/syscom-achievement";
+import SyscomAchievement from "@/components/ui/achievements/syscom-achievement";
 
 import { WorkItem } from "./work-item";
 

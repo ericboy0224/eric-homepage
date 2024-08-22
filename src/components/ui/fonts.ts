@@ -1,16 +1,16 @@
-import { Foldit, Merriweather, Poppins } from 'next/font/google';
+import { Foldit, Poppins, Noto_Sans } from 'next/font/google';
 
-export const merriweather = Merriweather({
-    subsets: ['latin'],
-    weight: ['300', '700']
-});
+// export const inter = Noto_Sans({
+//     subsets: ['latin'],
+//     weight: ['300', '700']
+// });
 
 export const poppins = Poppins({
     subsets: ['latin'],
     weight: ['400', '700']
 });
 
-export const foldit= Foldit({
+export const foldit = Foldit({
     subsets: ['latin'],
     weight: ['700']
 });

@@ -1,6 +1,6 @@
-import SaviahAchievement from '@/components/achievements/saviah-achievement';
-import CompanyInfo from '@/components/company-info';
-import WorkLayout from '@/components/work-layout';
+import SaviahAchievement from '@/components/ui/achievements/saviah-achievement';
+import CompanyInfo from '@/components/ui/company-info';
+import WorkLayout from '@/components/ui/work-layout';
 import React from 'react';
 
 const SaviahContent: React.FC = () => {

@@ -28,7 +28,7 @@ const BannerBackground = ({ children }: { children?: ReactNode }) => {
 
     return (
         <motion.div
-            className="p-10 h-full w-full bg-gradient-to-r from-[#eea2a2] via-[#bbc1bf] to-[#7ac5d8]"
+            className="p-10 h-full w-full bg-gradient-to-r from-[#eea2a2] via-[#bbc1bf] to-[#7ac5d8] border rounded-lg"
             style={{
                 backgroundSize: '200% 200%',
             }}

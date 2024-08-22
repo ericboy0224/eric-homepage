@@ -1,14 +1,16 @@
-import ExperienceSection from '@/components/home/experience-section';
-import MoreSection from '@/components/home/more-section';
-import Banner from '@/components/home/text-banner';
-import WorkSection from '@/components/home/work-section';
+import ExperienceSection from '@/components/ui/home/experience-section';
+import MoreSection from '@/components/ui/home/more-section';
+import Banner from '@/components/ui/home/text-banner';
+import WorkSection from '@/components/ui/home/work-section';
 import Divider from '@/components/ui/divider';
 import Heading from '@/components/ui/inview/text/heading';
+import Link from 'next/link';
+import SocialMedia from '@/components/ui/social-media';
 
 export default function Home() {
   return (
     <div className='text-center'>
-      <section className="mb-20 md:h-[calc(100vh-9.5rem)] h-[calc(100vh-5rem)]">
+      <section>
         <div className='max-h-[800px] flex flex-col'>
           <div className="flex-none">
             <Heading>JIA-HAO, LIN</Heading>
@@ -19,7 +21,7 @@ export default function Home() {
         </div>
       </section>
       <Divider />
-      <section className="mb-5 h-[700px]">
+      <section>
         <div className="flex flex-col h-full">
           <div className="flex-none">
             <Heading>Experience</Heading>
@@ -30,7 +32,7 @@ export default function Home() {
         </div>
       </section>
       <Divider />
-      <section className="mb-20 h-[calc(100vh-9.5rem)]">
+      <section>
         <div className="flex flex-col h-full">
           <div className="flex-none">
             <Heading>Works</Heading>
@@ -41,11 +43,14 @@ export default function Home() {
         </div>
       </section>
       <Divider />
-      <section className="h-auto">
+      <section>
         <Heading>Try to make life easier</Heading>
         <div className="space-y-20">
           <MoreSection />
         </div>
+      </section>
+      <section className='flex justify-center'>
+        <SocialMedia />
       </section>
     </div>
   );

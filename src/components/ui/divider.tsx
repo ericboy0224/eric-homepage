@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useAnimation, useInView } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 const gradientVariants = {
     animate: {
@@ -15,14 +15,20 @@ export default function Divider() {
     const ref = useRef(null);
     const isInView = useInView(ref);
     const control = useAnimation();
+    const [init, setInit] = useState(false);
 
     useEffect(() => {
+        if(init) {
+            return;
+        }
         if (isInView) {
             control.start('animate');
+            setInit(true);
         } else {
             control.stop();
         }
-    }, [isInView, control]);
+    }, [isInView, control, init, setInit]);
+
     return (
         <div className="flex justify-center items-center mb-20">
             <motion.div

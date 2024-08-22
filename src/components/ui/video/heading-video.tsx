@@ -46,7 +46,7 @@ export default function HeadingVideo({ heading, content, videoSrc, posterSrc, is
     }, []);
 
     return (
-        <div ref={containerRef} className="flex flex-col md:flex-row w-full h-screen">
+        <div ref={containerRef} className="flex flex-col md:flex-row w-full">
             <motion.div
                 className={`w-full md:w-1/2 p-4 flex flex-col justify-center items-center ${isReversed && !isNarrow ? 'order-2' : 'order-1'}`}
                 initial={{ opacity: 0, x: -50 }}
