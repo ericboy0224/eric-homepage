@@ -27,15 +27,19 @@ This is a personal website and blog for Eric Lin, a full-stack developer based i
 To run this project locally, follow these steps:
 
 1. Clone the repository
-2. Install dependencies:
+2. Download and install nvm (Node Version Manager):
    ```
-   pnpm install
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
    ```
-3. Run the development server:
+3. Use the correct Node.js version:
    ```
-   pnpm dev
+   nvm use
    ```
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+4. Install dependencies and run the development server using the Makefile:
+   ```
+   make dev
+   ```
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Project Structure
 
