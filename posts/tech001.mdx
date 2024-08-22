@@ -1,0 +1,184 @@
+---
+title: 如何在部落格中套用 Content Layer
+date: 2024-08-18
+tags:
+  - "#build-blog"
+  - "#contentLayer"
+description: Content Layer 可以幫助我們管理解析路徑下的靜態文件，並透過 layout 進行一致性的排版
+---
+我發現部落格系統時常會透過 `contentLayer` 進行內容管理，於是翻了一下官方文件發現了：
+
+## Content layer 是有助於我們管理靜態文件的工具
+
+### **環境設定**
+
+在 `Next.js`** 專案中安裝：**
+
+```zsh
+pnpm add contentlayer next-contentlayer date-fns
+```
+
+在 `next.config.js` 中導入並使用 `withContentLayer` 包住我們的輸出：
+
+```js
+// next.config.ts
+const { withContentlayer } = require('next-contentlayer')
+
+/** @type {import('next').NextConfig} */
+const nextConfig = { reactStrictMode: true, swcMinify: true }
+
+module.exports = withContentlayer(nextConfig)
+```
+
+ 如果你使用 TS，記得要改 `tsconfig.json`：
+ 
+ ```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    //  ^^^^^^^^^^^
+    "paths": {
+      "contentlayer/generated": ["./.contentlayer/generated"]
+      // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".contentlayer/generated"
+    // ^^^^^^^^^^^^^^^^^^^^^^
+  ]
+}
+```
+
+為了確保每一次 build production 都保持最新的內容，必須在 `.gitignore` 中新增 `.contentlayer` :
+
+```bash
+# .gitignore
+
+# ...
+
+# contentlayer
+.contentlayer
+```
+
+### 程式設定
+
+在 root 新增一個 `contentlayer.config.ts` :
+
+```js
+// contentlayer.config.ts
+import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+
+export const Post = defineDocumentType(() => ({
+  name: 'Post',
+  filePathPattern: `**/*.md`,
+  fields: {
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
+  },
+  computedFields: {
+    url: { type: 'string', resolve: (post) => `/posts/${post._raw.flattenedPath}` },
+  },
+}))
+
+export default makeSource({ contentDirPath: 'posts', documentTypes: [Post] })
+```
+
+### 試試看
+
+我們的 `.md` 文件大致上會長這樣：
+
+```txt
+---
+title: My First Post
+date: 2021-12-24
+---
+
+Ullamco et nostrud magna commodo nostrud ...
+```
+
+post 這邊的資料夾結構：
+
+```txt
+posts/
+├── post-01.md
+├── post-02.md
+└── post-03.md
+```
+
+在 homepage 秀出 post list ，這邊有兩個部分，post card 的 layout，以及把我們的 posts 展示出來
+
+```jsx
+// app/page.tsx
+import Link from 'next/link'
+import { compareDesc, format, parseISO } from 'date-fns'
+import { allPosts, Post } from 'contentlayer/generated'
+
+function PostCard(post: Post) {
+  return (
+    <div className="mb-8">
+      <h2 className="mb-1 text-xl">
+        <Link href={post.url} className="text-blue-700 hover:text-blue-900 dark:text-blue-400">
+          {post.title}
+        </Link>
+      </h2>
+      <time dateTime={post.date} className="mb-2 block text-xs text-gray-600">
+        {format(parseISO(post.date), 'LLLL d, yyyy')}
+      </time>
+      <div className="text-sm [&>*]:mb-3 [&>*:last-child]:mb-0" dangerouslySetInnerHTML={{ __html: post.body.html }} />
+    </div>
+  )
+}
+
+export default function Home() {
+  const posts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
+
+  return (
+    <div className="mx-auto max-w-xl py-8">
+      <h1 className="mb-8 text-center text-2xl font-black">Next.js + Contentlayer Example</h1>
+      {posts.map((post, idx) => (
+        <PostCard key={idx} {...post} />
+      ))}
+    </div>
+  )
+}
+```
+
+透過 `[slug]` folder 為貼文建立動態路由：
+
+```jsx
+// app/posts/[slug]/page.tsx
+import { format, parseISO } from 'date-fns'
+import { allPosts } from 'contentlayer/generated'
+
+export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
+
+export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+  if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
+  return { title: post.title }
+}
+
+const PostLayout = ({ params }: { params: { slug: string } }) => {
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+  if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
+
+  return (
+    <article className="mx-auto max-w-xl py-8">
+      <div className="mb-8 text-center">
+        <time dateTime={post.date} className="mb-1 text-xs text-gray-600">
+          {format(parseISO(post.date), 'LLLL d, yyyy')}
+        </time>
+        <h1 className="text-3xl font-bold">{post.title}</h1>
+      </div>
+      <div className="[&>*]:mb-3 [&>*:last-child]:mb-0" dangerouslySetInnerHTML={{ __html: post.body.html }} />
+    </article>
+  )
+}
+
+export default PostLayout
+```
