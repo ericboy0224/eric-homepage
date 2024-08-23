@@ -1,8 +1,8 @@
+import Divider from '@/components/ui/divider';
 import ExperienceSection from '@/components/ui/home/experience-section';
 import MoreSection from '@/components/ui/home/more-section';
 import Banner from '@/components/ui/home/text-banner';
 import WorkSection from '@/components/ui/home/work-section';
-import Divider from '@/components/ui/divider';
 import Heading from '@/components/ui/inview/text/heading';
 import SocialMedia from '@/components/ui/social-media';
 

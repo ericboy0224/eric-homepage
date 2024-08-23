@@ -24,7 +24,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={cn(
-        "min-h-screen bg-background font-sans antialiased flex justify-center",
+        "min-h-screen bg-background font-sans antialiased flex justify-center overflow-y-scroll",
         poppins.className
       )}>
         <ThemeProvider
@@ -33,9 +33,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className={cn('w-full max-w-screen-lg mx-auto')}>
+          <div className="w-full h-screen max-w-screen-lg mx-auto">
             <Header />
-            <main className="h-full">{children}</main>
+            <main className="h-full mt-20">{children}</main>
           </div>
         </ThemeProvider>
       </body>

@@ -8,7 +8,7 @@ import * as React from 'react';
 
 export function Header() {
     return (
-        <div className={cn("flex justify-between w-auto p-10 h-[7rem]")}>
+        <div className={cn("flex justify-between w-auto px-10 py-5 h-[5rem] fixed top-0 left-0 right-0 bg-background z-50")}>
             <Link href="/" passHref>
                 <h1 className={cn("scroll-m-20 text-3xl font-semibold tracking-tight antialiased", foldit.className)}>E</h1>
             </Link>
