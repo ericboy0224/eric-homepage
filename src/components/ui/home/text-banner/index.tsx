@@ -8,11 +8,14 @@ export default function Banner() {
             <div className="flex flex-col h-full">
                 <div className="flex-grow text-start">
                     <Heading pulse={0}>
-                        Hi, I'm Eric
+                        Hi, I'm Eric Lin
                     </Heading>
                     <Heading pulse={0}>
-                        A Full-stack Developer Based in Taipei
+                        Full-stack Developer & Software Engineer
                     </Heading>
+                    <Description pulse={1}>
+                        Specializing in React, Next.js, Go, and MongoDB
+                    </Description>
                 </div>
                 <div className="flex justify-end items-center">
                     <Description pulse={1}> + </Description>
@@ -22,7 +25,7 @@ export default function Banner() {
                 </div>
                 <div className="text-end">
                     <Description pulse={2}>Years of Experience</Description>
-                    <Description pulse={2}>Professional Developer</Description>
+                    <Description pulse={2}>Professional Full-stack Developer</Description>
                 </div>
             </div>
         </BannerBackground>

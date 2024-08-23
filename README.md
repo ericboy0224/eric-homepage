@@ -1,6 +1,15 @@
 # Eric Lin's Personal Website
 
-This is a personal website and blog for Eric Lin, a full-stack developer based in Taipei. The project is built using Next.js and incorporates various modern web development technologies and practices.
+Eric Lin is a full-stack developer and software engineer based in Taipei, with expertise in React, Next.js, Go, and MongoDB. This repository contains the source code for his personal website and blog.
+
+## About Eric Lin
+
+- Full-stack Developer with 3+ years of experience
+- Specializes in React, Next.js, Go, and MongoDB
+- Based in Taipei, Taiwan
+- Passionate about creating efficient and scalable web applications
+
+[LinkedIn](https://www.linkedin.com/in/jia-hao-lin/) | [GitHub](https://github.com/ericboy0224) | [Instagram](https://www.instagram.com/babydogofmyg/)
 
 ## Features
 
