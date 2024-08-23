@@ -26,7 +26,7 @@ export default function MoreSection() {
     return (
         <div className='flex flex-col'>
             {videoData.map((video, index) => (
-                <div className='min-h-[800px]'>
+                <div key={index} className='min-h-[800px]'>
                     <HeadingVideo key={index} {...video} />
                 </div>
             ))}

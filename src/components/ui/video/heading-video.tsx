@@ -67,8 +67,8 @@ export default function HeadingVideo({ heading, content, videoSrc, posterSrc, is
                         <Image
                             src={posterSrc}
                             alt="Video poster"
-                            layout="fill"
-                            objectFit="contain"
+                            fill
+                            style={{ objectFit: 'contain' }}
                         />
                     )}
                     <video
