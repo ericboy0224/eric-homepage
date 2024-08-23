@@ -2,21 +2,21 @@ import HeadingVideo, { HeadingVideoProps } from '@/components/ui/video/heading-v
 
 const videoData: HeadingVideoProps[] = [
     {
-        heading: "Encourage people to become engineers",
-        content: "People are usually scared of starting something new. Just start and you will see the magic!",
+        heading: "Embrace Engineering",
+        content: "Overcome fear of new beginnings. Take the first step and witness the transformation.",
         videoSrc: "/videos/becoming-engineer.mov",
         posterSrc: "/images/becoming-engineer-poster.jpg",
     },
     {
-        heading: "How to get closer to your teammates in a remote team",
-        content: "Distance is not a problem when you use a great attitude and a lot of communication.",
+        heading: "Bridging Remote Teams",
+        content: "Foster connection through proactive communication and positive attitudes.",
         videoSrc: "/videos/remote-work.mov",
         posterSrc: "/images/remote-work-poster.jpg",
         isReversed: true,
     },
     {
-        heading: "Understand, then speak",
-        content: "Misunderstandings are common in life. Listen first, then speak.",
+        heading: "Listen Before You Speak",
+        content: "Cultivate understanding by prioritizing active listening in all interactions.",
         videoSrc: "/videos/listen-first.mov",
         posterSrc: "/images/listen-first-poster.jpg",
     },
