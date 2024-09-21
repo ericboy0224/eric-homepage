@@ -5,9 +5,10 @@ import { allPosts } from 'contentlayer/generated'
 import { format, parseISO } from 'date-fns'
 import { MDXComponents } from 'mdx/types'
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import Link from 'next/link'
 import rehypeHighlight from 'rehype-highlight'
 import rehypePrism from 'rehype-prism-plus'
+import Image from 'next/image'
+import path from 'path'
 
 import 'highlight.js/styles/github-dark.css'
 
@@ -31,7 +32,22 @@ const mdxComponents: MDXComponents = {
   code: ({ children }) => <code className="bg-secondary text-secondary-foreground px-1 py-0.5 rounded">{children}</code>,
   pre: ({ children }) => <pre className="bg-secondary text-secondary-foreground p-4 rounded-lg overflow-x-auto mb-6">{children}</pre>,
   option: ({ children }) => <option className="bg-secondary text-secondary-foreground p-4 rounded-lg overflow-x-auto mb-6">{children}</option>,
-  highlight: ({ children }) => <span className="text-red-500">{children}</span>
+  highlight: ({ children }) => <span className="text-red-500">{children}</span>,
+  img: ({ src, alt, ...props }) => {
+    const imageSrc = src?.startsWith('/') ? src : path.join('/images', src || '')
+    return (
+      <div className="flex justify-center">
+        <Image 
+          src={imageSrc} 
+          alt={alt || ''} 
+          className="mb-6" 
+          width={500}
+          height={500} 
+          {...props} 
+        />
+      </div>
+    )
+  }
 }
 
 const PostLayout = ({ params }: { params: { slug: string } }) => {
