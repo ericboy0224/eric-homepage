@@ -40,9 +40,10 @@ const mdxComponents: MDXComponents = {
         src={imageSrc} 
         alt={alt || ''} 
         className="mb-6 mx-auto" // Added mx-auto for centering
+        loading="lazy"
         width={500}
-        height={500} 
-        {...props} 
+        height={500}
+        // {...props} 
       />
     )
   }
