@@ -10,7 +10,7 @@ function PostCard(post: Post & { isLatest?: boolean }) {
     return (
         <div className={cn("mb-8 overflow-hidden border rounded-md group", { "col-span-full bg-sky-500": post.isLatest })}>
             <Link href={post.url} className="text-foreground hover:text-primary transition-colors">
-                <div className="flex">
+                <div className="flex h-full">
                     <div className={cn("rounded-l-lg transition-all duration-300 ", { "w-2 bg-gradient-to-b from-[#eea2a2] via-[#bbc1bf] to-[#7ac5d8] group-hover:w-3": !post.isLatest, "w-0": post.isLatest })}></div>
                     <div className={cn("flex-grow p-6 bg-secondary/10 transition-all group-hover:bg-secondary/20 duration-300", { "text-background": post.isLatest })}>
                         <div className="flex justify-between items-start">
