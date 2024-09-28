@@ -1,0 +1,159 @@
+---
+title: PostgreSQL 開發環境需要知道的步驟
+date: 2024-09-28
+tags:
+  - Docker
+  - Postgres
+description: 這篇文章幫助你了解一些基本 docker 知識還有怎麼利用它來設置 Postgres 環境
+---
+## 下載 Docker Desktop
+
+直接到官方網站下載對應作業系統的應用程式：
+
+https://www.docker.com/products/docker-desktop/
+
+接著就是一些安裝以及注冊登入，結束以後可以挑一個指令測試：
+
+```shell
+docker images
+```
+
+目前 local 還沒有任何 image，但我們知道 docker 正常運行：
+
+```shell
+> docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+```
+
+## 從 Docker hub 上拉取 Postgres image
+
+https://hub.docker.com/_/postgres
+
+在 Docker hub 的網站中，你搜到你想要的 image，以 Postgres 為例，會提供你 pull postgres 基礎的指令：
+
+```shell
+docker pull postgres
+```
+
+在這邊我的目的是希望在有限的資源下開發因此選擇了閹割版（alpine），除了一般版本外，postgres image 還有兩種版本：
+
+- slim：保留核心的版本
+- alpine：最輕量的版本，有些功能被捨棄但提供輕量的 image
+
+指定版本的安裝指令，我們要在 postgres 的後面指定 tag：
+
+```shell
+docker pull postgres:17-alpine
+```
+
+會看到以下結果：
+
+```shell
+> docker pull postgres:17-alpine
+17-alpine: Pulling from library/postgres
+cf04c63912e1: Pull complete
+044d9972b6f9: Pull complete
+1c4b963fa70b: Pull complete
+c97ff27562e7: Pull complete
+0a8fa91fd8dd: Pull complete
+fc336a10ac24: Pull complete
+e64e42d2e378: Pull complete
+368fad94fbf5: Pull complete
+2f5a5dbb159e: Pull complete
+440196fcba86: Pull complete
+Digest: sha256:14195b0729fce792f47ae3c3704d6fd04305826d57af3b01d5b4d004667df174
+Status: Downloaded newer image for postgres:17-alpine
+docker.io/library/postgres:17-alpine
+```
+
+當一切結束一後，我們再跑一次 `docker images`，可以看到你的清單中終於有了資訊：
+
+```shell
+docker images
+REPOSITORY   TAG         IMAGE ID       CREATED        SIZE
+postgres     17-alpine   8356ae177161   34 hours ago   255MB
+```
+
+## 執行 Container
+
+Image 就是讓 container 執行的環境，因此我們前面到 docker hub 上拉取的 image，目的是為了讓 postgres 可以順利運作，而在同一份[文件](https://hub.docker.com/_/postgres)中，有提供該如何運行 container 的方法，我們只需要：
+
+- 為 container 命名，透過 `--name`，這會幫助我們在後續的指令中更容易找到目標
+- 為 container 提供環境變數，如使用者、密碼透過 `-e`
+- 為 container 提供 `<local-port>:<docker-port>`，透過 `-p`
+	- 提供 port 是因為我們需要造訪 DB 發送請求進行操作
+- 指定運行環境即 image 透過`-d`
+
+```shell
+docker run --name postgres-17 -p 5432:5432 -e POSTGRES_USER=<CUSTOM_USER> -e POSTGRES_PASSWORD=<CUSTOM_PASSWORD> -d postgres-17:alpine
+```
+
+執行過後會看到完整的 container ID 回傳：
+
+```shell
+5b284b4e63176a72faa2bf78c8391b8a867011ece3901d81f4559688d3a41c44
+```
+
+這時候我們可以透過 `docker ps` 看一下執行中的 container:
+
+```shell
+docker ps
+```
+
+會得到回覆：
+
+```shell
+CONTAINER ID   IMAGE                COMMAND                   CREATED          STATUS          PORTS                    NAMES
+5b284b4e6317   postgres:17-alpine   "docker-entrypoint.s…"   20 seconds ago   Up 20 seconds   0.0.0.0:5432->5432/tcp   postgres-17
+```
+
+這時候你對照 `images` 欄位會發現，成功指定到你先前 pull 的 postgres image `postgres:17-alpine`：
+
+```shell
+docker images
+REPOSITORY   TAG         IMAGE ID       CREATED        SIZE
+postgres     17-alpine   8356ae177161   34 hours ago   255MB
+```
+
+## 與 Container 互動
+
+透過 `docker exec -it` 目標是告訴指定 container 你要執行什麼指令：
+
+```shell
+docker exec -it <CONTAINER_NAME> psql -U <YOUR_USER_NAME>
+```
+
+在這邊我執行了 psql 指令來與資料庫進行溝通，而不需要提供密碼的原因在於 Postgres 提供了 local 信任的規則，意思是 local request 都不需要提供密碼：
+
+```shell
+> docker exec -it postgres-17 psql -U root
+psql (17.0)
+Type "help" for help.
+```
+
+```sql
+root=# select now();
+              now
+-------------------------------
+ 2024-09-28 04:04:40.030232+00
+(1 row)
+
+root=# \q
+```
+
+`docker logs <CONTAINER_NAME>`，可以幫助我們看到執行時的 log：
+
+
+```shell
+> docker logs postgres-17
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "en_US.utf8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+# more info
+```
