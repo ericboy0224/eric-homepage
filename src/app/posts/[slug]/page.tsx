@@ -1,14 +1,14 @@
 import { poppins } from '@/components/ui/fonts'
 import PostHeader from '@/components/ui/post-header'
+import { YouTubeEmbed } from '@/components/ui/youtube-embed'
 import { cn } from '@/lib/utils'
 import { allPosts } from 'contentlayer/generated'
 import { format, parseISO } from 'date-fns'
+import { Clock } from 'lucide-react'
 import { MDXComponents } from 'mdx/types'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Image from 'next/image'
 import path from 'path'
-import { YouTubeEmbed } from '@/components/ui/youtube-embed'
-import { Clock } from 'lucide-react'
 
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
 
@@ -115,27 +115,31 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
-  const MDXContent = useMDXComponent(post.body.code);
+  const MDXContent = useMDXComponent(post.body.code)
+  const readingTime = Math.ceil(post.body.raw.split(/\s+/g).length / 200)
 
   return (
-    <article className="mx-auto max-w-4xl px-6 py-8">
-      <div className="mb-8 text-center">
-        <PostHeader title={post.title} />
-        <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground mt-4">
-          <time dateTime={post.date} className={cn(poppins.className)}>
-            {format(parseISO(post.date), 'LLLL d, yyyy')}
-          </time>
-          <span className="text-muted-foreground">•</span>
-          <div className="flex items-center gap-1">
-            <Clock className="h-4 w-4" />
-            <span>{Math.ceil(post.body.raw.split(/\s+/g).length / 200)} min read</span>
-          </div>
+    <article className="mx-auto max-w-4xl px-6 py-8" itemScope itemType="http://schema.org/BlogPosting">
+      <meta itemProp="author" content="Eric" />
+      <meta itemProp="datePublished" content={post.date} />
+
+      <PostHeader
+        title={post.title}
+        description={post.description}
+      />
+
+      <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground mb-8">
+        <time dateTime={post.date} className={cn(poppins.className)} itemProp="datePublished">
+          {format(parseISO(post.date), 'LLLL d, yyyy')}
+        </time>
+        <span className="text-muted-foreground">•</span>
+        <div className="flex items-center gap-1">
+          <Clock className="h-4 w-4" />
+          <span>{readingTime} min read</span>
         </div>
-        {post.description && (
-          <p className="mt-4 text-lg text-muted-foreground">{post.description}</p>
-        )}
       </div>
-      <div className="mdx-content prose prose-zinc dark:prose-invert max-w-none">
+
+      <div className="mdx-content prose prose-zinc dark:prose-invert max-w-none" itemProp="articleBody">
         <MDXContent components={mdxComponents} />
       </div>
     </article>
