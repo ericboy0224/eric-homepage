@@ -7,69 +7,136 @@ import { MDXComponents } from 'mdx/types'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Image from 'next/image'
 import path from 'path'
-import rehypeHighlight from 'rehype-highlight'
-import rehypePrism from 'rehype-prism-plus'
-
-import 'highlight.js/styles/github-dark.css'
+import { YouTubeEmbed } from '@/components/ui/youtube-embed'
+import { Clock } from 'lucide-react'
 
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
 
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
-  return { title: post.title }
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: 'article',
+      publishedTime: post.date,
+      authors: ['Eric'],
+      tags: post.tags,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+    }
+  }
 }
 
 const mdxComponents: MDXComponents = {
-  h1: (props) => <h1 {...props} className="text-3xl font-bold" />,
-  h2: (props) => <h2 {...props} className="text-2xl font-bold" />,
-  a: (props) => <a {...props} className="text-blue-600 dark:text-blue-400 hover:underline" />,
-  h3: ({ children }) => <h3 className="text-xl font-semibold mt-6 mb-4">{children}</h3>,
-  p: ({ children }) => <p className="mb-6">{children}</p>,
-  ul: ({ children }) => <ul className="list-disc list-inside mb-6">{children}</ul>,
-  ol: ({ children }) => <ol className="list-decimal list-inside mb-6">{children}</ol>,
-  li: ({ children }) => <li className="mb-3">{children}</li>,
-  code: ({ children }) => <code className="bg-secondary text-secondary-foreground px-1 py-0.5 rounded">{children}</code>,
-  pre: ({ children }) => <pre className="bg-secondary text-secondary-foreground p-4 rounded-lg overflow-x-auto mb-6">{children}</pre>,
-  option: ({ children }) => <option className="bg-secondary text-secondary-foreground p-4 rounded-lg overflow-x-auto mb-6">{children}</option>,
-  highlight: ({ children }) => <span className="text-red-500">{children}</span>,
+  h1: (props) => <h1 {...props} className="text-4xl font-bold mb-6 mt-10" />,
+  h2: (props) => <h2 {...props} className="text-3xl font-bold mb-4 mt-8" />,
+  h3: (props) => <h3 {...props} className="text-2xl font-semibold mb-4 mt-6" />,
+  h4: (props) => <h4 {...props} className="text-xl font-semibold mb-3 mt-5" />,
+  p: (props) => <p {...props} className="mb-6 leading-7 text-lg" />,
+  a: (props) => {
+    const href = props.href || '';
+    if (href.match(/^https?:\/\/(www\.)?youtube\.com\/watch\?v=([^&]+)/)) {
+      const videoId = href.match(/v=([^&]+)/)?.[1];
+      return videoId ? <YouTubeEmbed videoId={videoId} /> : <a {...props} />;
+    }
+    return (
+      <a
+        {...props}
+        className="text-primary underline decoration-primary decoration-2 underline-offset-4 hover:text-primary/80 transition-colors"
+        target={href.startsWith('http') ? '_blank' : undefined}
+        rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+      />
+    );
+  },
+  ul: (props) => <ul {...props} className="list-disc list-inside mb-6 space-y-2" />,
+  ol: (props) => <ol {...props} className="list-decimal list-inside mb-6 space-y-2" />,
+  li: (props) => <li {...props} className="mb-1 text-lg" />,
+  blockquote: (props) => (
+    <blockquote
+      {...props}
+      className="border-l-4 border-primary pl-4 italic my-6 text-lg text-muted-foreground"
+    />
+  ),
+  code: ({ children, className, ...props }) => {
+    const isInline = !className;
+    return isInline ? (
+      <code {...props} className="bg-muted px-1.5 py-0.5 rounded-md font-mono text-sm">
+        {children}
+      </code>
+    ) : (
+      <code {...props} className={cn("grid", className)}>
+        {children}
+      </code>
+    );
+  },
+  pre: (props) => (
+    <pre
+      {...props}
+      className="mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4 dark:bg-zinc-900"
+    />
+  ),
   img: ({ src, alt, ...props }) => {
     const imageSrc = src?.startsWith('/') ? src : path.join('/images', src || '')
     return (
-      <Image 
-        src={imageSrc} 
-        alt={alt || ''} 
-        className="mb-6 mx-auto" // Added mx-auto for centering
-        loading="lazy"
-        width={500}
-        height={500}
-        // {...props} 
-      />
+      <figure className="my-8">
+        <Image
+          src={imageSrc}
+          alt={alt || ''}
+          className="rounded-lg mx-auto"
+          loading="lazy"
+          width={800}
+          height={500}
+          quality={90}
+        />
+        {alt && <figcaption className="text-center text-sm text-muted-foreground mt-2">{alt}</figcaption>}
+      </figure>
     )
-  }
+  },
+  table: (props) => (
+    <div className="overflow-x-auto mb-6">
+      <table {...props} className="w-full border-collapse text-left" />
+    </div>
+  ),
+  th: (props) => (
+    <th {...props} className="border-b p-4 font-medium text-muted-foreground" />
+  ),
+  td: (props) => <td {...props} className="border-b p-4" />,
+  hr: () => <hr className="my-8 border-muted" />,
 }
 
 const PostLayout = ({ params }: { params: { slug: string } }) => {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
-  const MDXContent = useMDXComponent(post.body.code, {
-    rehypePlugins: [
-      [rehypeHighlight, { detect: true, ignoreMissing: true }],
-      [rehypePrism, { showLineNumbers: true }]
-    ]
-  });
+  const MDXContent = useMDXComponent(post.body.code);
 
   return (
-    <article className="mx-auto w-full py-8">
+    <article className="mx-auto max-w-4xl px-6 py-8">
       <div className="mb-8 text-center">
         <PostHeader title={post.title} />
-        <time dateTime={post.date} className={cn("mb-1 text-xs text-gray-600", poppins.className)}>
-          {format(parseISO(post.date), 'LLLL d, yyyy')}
-        </time>
+        <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground mt-4">
+          <time dateTime={post.date} className={cn(poppins.className)}>
+            {format(parseISO(post.date), 'LLLL d, yyyy')}
+          </time>
+          <span className="text-muted-foreground">•</span>
+          <div className="flex items-center gap-1">
+            <Clock className="h-4 w-4" />
+            <span>{Math.ceil(post.body.raw.split(/\s+/g).length / 200)} min read</span>
+          </div>
+        </div>
+        {post.description && (
+          <p className="mt-4 text-lg text-muted-foreground">{post.description}</p>
+        )}
       </div>
-      <div className="mdx-content">
-        <MDXContent components={mdxComponents}/>
+      <div className="mdx-content prose prose-zinc dark:prose-invert max-w-none">
+        <MDXContent components={mdxComponents} />
       </div>
     </article>
   )

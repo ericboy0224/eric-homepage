@@ -23,12 +23,7 @@
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --radius: 0.75rem;
   }
 
   .dark {
@@ -51,11 +46,6 @@
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
   }
 }
 
@@ -69,52 +59,54 @@
 }
 
 /* MDX Styles */
-@layer components {
-  .mdx-content {
-    @apply max-w-2xl mx-auto;
-  }
+.mdx-content {
+  @apply prose prose-zinc dark:prose-invert
+    prose-headings:font-bold prose-headings:tracking-tight
+    prose-h1:text-4xl prose-h1:mb-8
+    prose-h2:text-3xl prose-h2:mb-4 prose-h2:mt-8
+    prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-6
+    prose-p:leading-7 prose-p:mb-6
+    prose-blockquote:border-l-4 prose-blockquote:border-primary
+    prose-blockquote:pl-4 prose-blockquote:italic
+    prose-blockquote:my-6 prose-blockquote:text-muted-foreground
+    prose-ul:list-disc prose-ul:pl-6 prose-ul:my-6
+    prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-6
+    prose-li:my-2
+    prose-pre:bg-muted prose-pre:rounded-lg
+    prose-img:rounded-lg prose-img:mx-auto
+    prose-a:text-primary prose-a:underline
+    prose-a:underline-offset-4 prose-a:decoration-primary
+    prose-a:decoration-2 hover:prose-a:text-primary/80;
+}
 
-  .mdx-content h1,
-  .mdx-content h2,
-  .mdx-content h3,
-  .mdx-content h4,
-  .mdx-content h5,
-  .mdx-content h6 {
-    @apply font-bold mb-4 mt-8;
-  }
+.mdx-content pre {
+  @apply p-4 rounded-lg bg-muted overflow-x-auto;
+}
 
-  .mdx-content p {
-    @apply mb-4;
-  }
+.mdx-content pre code {
+  @apply bg-transparent p-0 text-sm text-current;
+  border: 0;
+}
 
-  .mdx-content a {
-    @apply text-blue-600 dark:text-blue-400 hover:underline;
-  }
+.mdx-content code {
+  @apply bg-muted px-1.5 py-0.5 rounded-md text-sm font-mono;
+}
 
-  .mdx-content ul,
-  .mdx-content ol {
-    @apply mb-4 pl-6;
-  }
+.mdx-content code::before,
+.mdx-content code::after {
+  content: "";
+}
 
-  .mdx-content li {
-    @apply mb-2;
-  }
+.mdx-content table {
+  @apply w-full border-collapse text-left my-6;
+}
 
-  .mdx-content blockquote {
-    @apply border-l-4 border-gray-300 dark:border-gray-700 pl-4 italic my-4;
-  }
+.mdx-content th {
+  @apply border-b p-4 font-medium text-muted-foreground;
+}
 
-  .mdx-content pre {
-    @apply bg-gray-100 dark:bg-gray-800 p-4 rounded-md overflow-x-auto mb-4;
-  }
-
-  .mdx-content code {
-    @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded-md text-sm;
-  }
-
-  .mdx-content img {
-    @apply max-w-full h-auto rounded-md my-4;
-  }
+.mdx-content td {
+  @apply border-b p-4;
 }
 
 section {

@@ -5,10 +5,12 @@ import CompanyInfo from '../../../components/ui/company-info';
 import WorkLayout from '../../../components/ui/work-layout';
 
 const SyscomContent: React.FC = () => {
- 
+
     return (
         <WorkLayout company="Syscom">
-            <SyscomAchievement/>
+            <div className='mb-5'>
+                <SyscomAchievement />
+            </div>
             <CompanyInfo
                 imageSrc="/images/netcenter.png"
                 imageAlt="Netcenter"

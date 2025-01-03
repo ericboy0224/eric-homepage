@@ -6,7 +6,9 @@ import React from 'react';
 const SaviahContent: React.FC = () => {
     return (
         <WorkLayout company="Saviah">
-            <SaviahAchievement />
+            <div className='mb-5'>
+                <SaviahAchievement />
+            </div>
             <CompanyInfo
                 imageSrc="/images/funding-news.png"
                 imageAlt="Saviah"

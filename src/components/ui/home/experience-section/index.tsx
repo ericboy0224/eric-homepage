@@ -1,28 +1,44 @@
 import Description from "@/components/ui/inview/text/description";
-
 import ExperienceItem from "./experience-item";
+
+const experiences = [
+    {
+        company: "Saviah Technologies",
+        position: "Full-stack Engineer",
+        technologies: ["React", "Next.js", "Go", "MongoDB"],
+        period: "2022 - present",
+        highlights: "Building scalable web applications and microservices"
+    },
+    {
+        company: "Syscom",
+        position: "Front-end Engineer",
+        technologies: ["Angular", "TypeScript", "D3.js"],
+        period: "2021 - 2022",
+        highlights: "Data visualization and enterprise applications"
+    },
+    {
+        company: "NTUT",
+        position: "Bachelor",
+        technologies: ["Computer Science", "Electrical Engineering"],
+        period: "2017 - 2021",
+        highlights: "Focus on software engineering and system design"
+    }
+];
 
 export default function ExperienceSection() {
     return (
         <Description>
-            <ExperienceItem
-                company="Saviah Technologies"
-                position="Full-stack Engineer"
-                technologies="React・Next.js・Vite・Go・MongoDB・CI/CD・Git・e2e Test・Unit Test"
-                period="2022 - present"
-            />
-            <ExperienceItem
-                company="Syscom"
-                position="Front-end Engineer"
-                technologies="Angular・Rx.js・D3.js・TypeScript・SCSS・Java"
-                period="2021 - 2022"
-            />
-            <ExperienceItem
-                company="NTUT"
-                position="Bachelor"
-                technologies="Computer Science・Electrical Engineering"
-                period="2017 - 2021"
-            />
+            <div className="grid gap-8">
+                {experiences.map((exp, index) => (
+                    <ExperienceItem
+                        key={exp.company}
+                        company={exp.company}
+                        position={exp.position}
+                        technologies={exp.technologies.join(" · ")}
+                        period={exp.period}
+                    />
+                ))}
+            </div>
         </Description>
-    )
+    );
 }

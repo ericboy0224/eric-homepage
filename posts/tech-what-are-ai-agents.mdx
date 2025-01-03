@@ -1,0 +1,65 @@
+---
+title: 什麼是 AI agents ? 一篇文章帶你了解現今大型語言模型趨勢
+date: 2025-01-03
+tags:
+  - "#LLM"
+description: 這篇文章先闡述了人們對於整合 LLM 應用的轉型以及原因，再到 AI agents 的誕生解決什麼問題？
+---
+
+[https://www.youtube.com/watch?v=F8NKVhkZZWI](https://www.youtube.com/watch?v=F8NKVhkZZWI)
+
+這篇文章主要會闡述：
+
+- 2023 開始 AI 應用的轉型
+- 介紹 AI Agents
+- 總結
+
+## 2023 開始 AI 應用的轉型
+
+![AI 應用轉型](/images/ai-agents-transform.png)
+
+2023 年，大家開始將單純整合大型語言模型（Large Language Models, LLM）的應用轉型成複合式系統（Coumpound Systems），因為調整一個大型語言模型需要擁有大量的時間以及資料，人們希望可以將 LLM 針對當下語境進行邏輯判斷的能力，與特定領域知識、用戶資料進行結合，生成出接近理想的答案。
+
+## 複合式系統（Compound Systems）
+
+以行事曆規劃為例，當我們只透過 LLM 進行互動時勢必會增加許多溝通成本，因為 LLM 本身不曉得我們的個人資訊。
+
+![複合式系統示例](/images/ai-agents-compound-1.png)
+
+### 複合式系統是一種系統設計（Design System）
+
+複合式系統很好的整合了資料庫，如我們可以根據用戶的資料進行判斷以及處理，或者是透過一些客製化邏輯、第三方工具進行成果的檢核，例如 RAG(Retrieval-Augmented Generation) 就是透過外部的知識增強 LLM 的生成能力。
+
+![複合式系統架構](/images/ai-agents-compound-2.png)
+
+但聰明的你有沒有發現，即便是做到這樣的程度，對於安排一個行程仍然有許多東西欠缺考量，例如上述的行程規劃並沒有將天氣的因素加入其中，可能當天到現場才下起了滂沱大雨。
+
+最終你可能會發現，我們想要的就是⋯⋯
+
+## 叫 AI 慢慢想 -- AI Agent 的出現
+
+我們不難發現從 ChatGPT 問世以來，與 AI 協作的痛點就是要不斷地透過溝通優化 LLM 的處理結果，有時候這樣調適的過程不如我們自己手動處理來得更快，2024 開始人們追求的是「由 AI 替我設想」。
+
+這也是 AI Agents 要為我們解決的情境，透過這顆理性的第二大腦，為我們想得更多：
+
+![AI Agent 思考過程](/images/ai-agents-thinking.png)
+
+### 我要你再想想 ReAct Workflow
+
+ReAct(Reasoning and Action) 是一種用於構建 LLM 的框架，目的在於提高 AI 推理與行動的能力。
+
+![ReAct 工作流程](/images/ai-agents-react.png)
+
+1. 思考（Thought）：模型會生成對於任務的推理結果，並解釋下一步的原因
+2. 行動（Action）：根據推理結果，選擇對應工具並行動
+3. 觀察（Observation）：紀錄行動結果，並提供給下一輪推理
+
+上述三個步驟會持續循環直到任務完成。
+
+而回到行程規劃，當使用者提出請求時，Agent 會先思考可能的因素，如時間排程、天氣因素等，透過不斷地思索、執行以及觀察來挑整結果至理想狀態。
+
+## 總結
+
+其實我是在今年 11 月底時，被 Cursor 的釋出所驚訝，Agent mode 居然能夠因應我的需求不斷地讀取相對應的資料，並請求我安裝必要的 libraries，不到幾分鐘的時間便幫我完成了 landing page 的 i18n 轉換，即便有些 styles 被改寫需要手動調整，這也大幅的加速了人們對於繁瑣工作的流程。但在實際了解過 ReAct 這套工作流程後，才明白「這一切並非魔法」，這更像是一種基於系統設計之上，讓 LLM 幫 LLM debug 的方法。
+
+現實中，已經有一些框架可以進行 LLM Agent 的任務，如 Python 就有 LangChain 可以使用（已經迫不及待想要試試看了），與此同時我們也能聯想到在這樣的工作流程下 token 會消耗的比較快速，因此大家也應該針對任務的性質去切換模型以及工作流程以節省支出！

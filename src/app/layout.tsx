@@ -9,9 +9,21 @@ import { Header } from './header';
 import { poppins } from "@/components/ui/fonts";
 
 export const metadata: Metadata = {
-  title: "Eric Lin - Full-stack Developer | Software Engineer",
-  description: "Eric Lin is a full-stack developer and software engineer based in Taipei, specializing in React, Next.js, and Go.",
-  keywords: ["Eric Lin", "full-stack developer", "software engineer", "React", "Next.js", "Go", "Taipei"],
+  title: "Eric Lin | Full-stack Developer & Software Engineer",
+  description: "Eric Lin is a passionate full-stack developer and software engineer based in Taipei. Specializing in React, Next.js, and Go, creating innovative web solutions and scalable applications.",
+  keywords: ["Eric Lin", "Full-stack Developer", "Software Engineer", "React", "Next.js", "Go", "TypeScript", "Web Development", "Taipei", "Frontend Developer", "Backend Developer"],
+  robots: "index, follow",
+  openGraph: {
+    title: "Eric Lin | Full-stack Developer & Software Engineer",
+    description: "Full-stack developer and software engineer specializing in React, Next.js, and Go",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Eric Lin | Full-stack Developer & Software Engineer",
+    description: "Full-stack developer and software engineer specializing in React, Next.js, and Go",
+  },
 };
 
 export default function RootLayout({
