@@ -139,8 +139,10 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
         </div>
       </div>
 
-      <div className="mdx-content prose prose-zinc dark:prose-invert max-w-none" itemProp="articleBody">
-        <MDXContent components={mdxComponents} />
+      <div className='flex justify-center'>
+        <div className="mdx-content prose prose-zinc dark:prose-invert max-w-none" itemProp="articleBody">
+          <MDXContent components={mdxComponents} />
+        </div>
       </div>
     </article>
   )
