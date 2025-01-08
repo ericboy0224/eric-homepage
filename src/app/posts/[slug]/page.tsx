@@ -9,6 +9,7 @@ import { MDXComponents } from 'mdx/types'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Image from 'next/image'
 import path from 'path'
+import React from 'react'
 
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
 
@@ -39,13 +40,28 @@ const mdxComponents: MDXComponents = {
   h2: (props) => <h2 {...props} className="text-3xl font-bold mb-4 mt-8" />,
   h3: (props) => <h3 {...props} className="text-2xl font-semibold mb-4 mt-6" />,
   h4: (props) => <h4 {...props} className="text-xl font-semibold mb-3 mt-5" />,
-  p: (props) => <p {...props} className="mb-6 leading-7 text-lg" />,
+  p: (props) => {
+    const children = React.Children.toArray(props.children);
+    if (children.length === 1) {
+      const child = children[0];
+      // Handle direct YouTube URL text
+      if (typeof child === 'string' && child.match(/^https?:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)) {
+        const videoId = child.match(/(?:v=|youtu\.be\/)([^&\s]+)/)?.[1];
+        return videoId ? <YouTubeEmbed videoId={videoId} /> : <p {...props} className="mb-6 leading-7 text-lg" />;
+      }
+      // Handle YouTube link wrapped in an anchor tag
+      if (React.isValidElement(child) && child.type === 'a') {
+        const href = child.props.href || '';
+        if (href.match(/^https?:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)) {
+          const videoId = href.match(/(?:v=|youtu\.be\/)([^&\s]+)/)?.[1];
+          return videoId ? <YouTubeEmbed videoId={videoId} /> : child;
+        }
+      }
+    }
+    return <p {...props} className="mb-6 leading-7 text-lg" />;
+  },
   a: (props) => {
     const href = props.href || '';
-    if (href.match(/^https?:\/\/(www\.)?youtube\.com\/watch\?v=([^&]+)/)) {
-      const videoId = href.match(/v=([^&]+)/)?.[1];
-      return videoId ? <YouTubeEmbed videoId={videoId} /> : <a {...props} />;
-    }
     return (
       <a
         {...props}
@@ -101,13 +117,18 @@ const mdxComponents: MDXComponents = {
   },
   table: (props) => (
     <div className="overflow-x-auto mb-6">
-      <table {...props} className="w-full border-collapse text-left" />
+      <table {...props} className="w-full border-collapse text-left text-base min-w-full divide-y divide-gray-300 dark:divide-gray-700" />
     </div>
   ),
   th: (props) => (
-    <th {...props} className="border-b p-4 font-medium text-muted-foreground" />
+    <th
+      {...props}
+      className="border border-gray-300 dark:border-gray-700 px-4 py-3 bg-gray-100 dark:bg-gray-800 font-semibold text-gray-900 dark:text-gray-100"
+    />
   ),
-  td: (props) => <td {...props} className="border-b p-4" />,
+  td: (props) => (
+    <td {...props} className="border border-gray-300 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300" />
+  ),
   hr: () => <hr className="my-8 border-muted" />,
 }
 

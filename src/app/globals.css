@@ -80,16 +80,16 @@
 }
 
 .mdx-content pre {
-  @apply p-4 rounded-lg bg-muted overflow-x-auto;
+  @apply p-4 rounded-lg bg-zinc-950 dark:bg-zinc-900 overflow-x-auto my-6 border border-border/50;
 }
 
 .mdx-content pre code {
-  @apply bg-transparent p-0 text-sm text-current;
+  @apply bg-transparent p-0 text-sm text-zinc-200 dark:text-zinc-200;
   border: 0;
 }
 
 .mdx-content code {
-  @apply bg-muted px-1.5 py-0.5 rounded-md text-sm font-mono;
+  @apply bg-muted px-1.5 py-0.5 rounded-md text-sm font-mono text-zinc-900 dark:text-zinc-200;
 }
 
 .mdx-content code::before,
@@ -98,15 +98,23 @@
 }
 
 .mdx-content table {
-  @apply w-full border-collapse text-left my-6;
+  @apply w-full my-6 border-collapse text-left;
 }
 
-.mdx-content th {
-  @apply border-b p-4 font-medium text-muted-foreground;
+.mdx-content table thead {
+  @apply bg-muted/50;
 }
 
-.mdx-content td {
-  @apply border-b p-4;
+.mdx-content table th {
+  @apply border-b border-border/50 p-4 font-medium text-foreground;
+}
+
+.mdx-content table td {
+  @apply border-b border-border/50 p-4 text-muted-foreground;
+}
+
+.mdx-content table tr:hover {
+  @apply bg-muted/30 transition-colors;
 }
 
 section {
