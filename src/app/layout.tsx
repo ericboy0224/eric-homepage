@@ -7,11 +7,12 @@ import { cn } from '@/lib/utils';
 
 import { Header } from './header';
 import { poppins } from "@/components/ui/fonts";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: "Eric Lin | Full-stack Developer & Software Engineer",
   description: "Eric Lin is a passionate full-stack developer and software engineer based in Taipei. Specializing in React, Next.js, and Go, creating innovative web solutions and scalable applications.",
-  keywords: ["Eric Lin", "Full-stack Developer", "Software Engineer", "React", "Next.js", "Go", "TypeScript", "Web Development", "Taipei", "Frontend Developer", "Backend Developer"],
+  keywords: ["Eric Lin", "Full-stack Developer", "Software Engineer", "React", "Next.js", "Go", "TypeScript", "Web Development", "Taipei", "Frontend Developer", "Backend Developer", "Jia-Hao Lin", "林家豪", "軟體工程師", "全端工程師", "Python", "FastAPI"],
   robots: "index, follow",
   openGraph: {
     title: "Eric Lin | Full-stack Developer & Software Engineer",
@@ -40,6 +41,7 @@ export default function RootLayout({
         "min-h-screen bg-background font-sans antialiased flex justify-center overflow-y-scroll",
         poppins.className
       )}>
+        <Analytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
